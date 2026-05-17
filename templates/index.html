@@ -1,0 +1,298 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Movie Recommendation Platform{% endblock %}
+
+{% block content %}
+<div class="hero-section text-center py-5 mb-5">
+    <div class="container">
+        <h1 class="display-4 fw-bold text-dark mb-4">
+            <i class="fas fa-film text-primary me-3"></i>
+            Movie Recommendation Platform
+        </h1>
+        <p class="lead text-muted mb-4">
+            Discover your next favorite movie using advanced machine learning algorithms, dynamic model status, and live recommendation insights.
+        </p>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <a href="{{ url_for('recommendations') }}" class="btn btn-primary btn-lg me-md-2">
+                        <i class="fas fa-star me-2"></i>Get Recommendations
+                    </a>
+                    <a href="{{ url_for('analytics') }}" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-chart-bar me-2"></i>View Analytics
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <!-- Features Section -->
+        <section class="mb-5">
+            <h2 class="h3 mb-4">
+                <i class="fas fa-cogs text-primary me-2"></i>
+                Key Features
+            </h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <div class="feature-icon text-primary mb-3">
+                                <i class="fas fa-brain fa-2x"></i>
+                            </div>
+                            <h5 class="card-title">Content-Based Filtering</h5>
+                            <p class="card-text">
+                                Get recommendations based on movie features like genre, cast, and director using TF-IDF and cosine similarity.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <div class="feature-icon text-success mb-3">
+                                <i class="fas fa-users fa-2x"></i>
+                            </div>
+                            <h5 class="card-title">Collaborative Filtering</h5>
+                            <p class="card-text">
+                                Discover movies based on user behavior patterns using SVD (Singular Value Decomposition) algorithm.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <div class="feature-icon text-warning mb-3">
+                                <i class="fas fa-magic fa-2x"></i>
+                            </div>
+                            <h5 class="card-title">Hybrid Recommendations</h5>
+                            <p class="card-text">
+                                Combine both approaches for personalized recommendations with adjustable weights.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <div class="feature-icon text-info mb-3">
+                                <i class="fas fa-chart-line fa-2x"></i>
+                            </div>
+                            <h5 class="card-title">Analytics Dashboard</h5>
+                            <p class="card-text">
+                                Visualize movie trends, rating distributions, and system performance metrics.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="mb-5">
+            <h2 class="h3 mb-4">
+                <i class="fas fa-question-circle text-primary me-2"></i>
+                How It Works
+            </h2>
+            <div class="accordion" id="howItWorks">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#step1">
+                            <i class="fas fa-database me-2"></i>
+                            Step 1: Data Collection
+                        </button>
+                    </h2>
+                    <div id="step1" class="accordion-collapse collapse show" data-bs-parent="#howItWorks">
+                        <div class="accordion-body">
+                            We collect movie data including titles, genres, and user ratings from various sources.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step2">
+                            <i class="fas fa-cogs me-2"></i>
+                            Step 2: Data Processing
+                        </button>
+                    </h2>
+                    <div id="step2" class="accordion-collapse collapse" data-bs-parent="#howItWorks">
+                        <div class="accordion-body">
+                            Raw data is cleaned, normalized, and transformed into suitable formats for machine learning.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step3">
+                            <i class="fas fa-brain me-2"></i>
+                            Step 3: Model Training
+                        </button>
+                    </h2>
+                    <div id="step3" class="accordion-collapse collapse" data-bs-parent="#howItWorks">
+                        <div class="accordion-body">
+                            Machine learning models are trained using collaborative filtering and content-based algorithms.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step4">
+                            <i class="fas fa-star me-2"></i>
+                            Step 4: Recommendations
+                        </button>
+                    </h2>
+                    <div id="step4" class="accordion-collapse collapse" data-bs-parent="#howItWorks">
+                        <div class="accordion-body">
+                            Personalized movie recommendations are generated based on user preferences and behavior.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="col-lg-4">
+        <!-- Quick Stats -->
+        <section class="mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-bar me-2"></i>
+                        System Statistics
+                    </h5>
+                </div>
+                <div class="card-body" id="quickStats">
+                    <div class="text-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Movies -->
+        <section class="mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-fire me-2"></i>
+                        Popular Movies
+                    </h5>
+                </div>
+                <div class="card-body" id="popularMovies">
+                    <div class="text-center">
+                        <div class="spinner-border text-success" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Model Status -->
+        <section class="mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">
+                        <i class="fas fa-cogs me-2"></i>
+                        Model Status
+                    </h5>
+                </div>
+                <div class="card-body" id="modelStatus">
+                    <div class="text-center">
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+    // Load quick stats
+    $.get('/api/analytics/stats')
+        .done(function(data) {
+            let statsHtml = `
+                <div class="row text-center">
+                    <div class="col-6 mb-3">
+                        <h4 class="text-primary">${data.total_movies || 0}</h4>
+                        <small class="text-muted">Movies</small>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <h4 class="text-success">${data.total_users || 0}</h4>
+                        <small class="text-muted">Users</small>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="text-info">${data.total_ratings || 0}</h4>
+                        <small class="text-muted">Ratings</small>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="text-warning">${data.avg_rating ? data.avg_rating.toFixed(2) : '0.0'}</h4>
+                        <small class="text-muted">Avg Rating</small>
+                    </div>
+                </div>
+            `;
+            $('#quickStats').html(statsHtml);
+        })
+        .fail(function() {
+            $('#quickStats').html('<p class="text-muted text-center">Unable to load statistics</p>');
+        });
+
+    // Load popular movies
+    $.get('/api/popular?n=5')
+        .done(function(data) {
+            let moviesHtml = '<div class="row g-3">';
+            data.forEach(function(movie) {
+                moviesHtml += `
+                    <div class="col-6 col-lg-12">
+                        <div class="card movie-card h-100">
+                            <div class="card-body py-3">
+                                <h6 class="card-title mb-1">${movie.title}</h6>
+                                <p class="card-text mb-1"><small class="text-muted">${movie.genres}</small></p>
+                                <p class="card-text"><small class="text-muted">Movie ID: ${movie.movieId}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            moviesHtml += '</div>';
+            $('#popularMovies').html(moviesHtml || '<p class="text-muted text-center">No movies available</p>');
+        })
+        .fail(function() {
+            $('#popularMovies').html('<p class="text-muted text-center">Unable to load movies</p>');
+        });
+
+    // Load model status
+    $.get('/api/models/status')
+        .done(function(data) {
+            let statusHtml = `
+                <div class="mb-2">
+                    <i class="fas fa-${data.content_based_trained ? 'check-circle text-success' : 'times-circle text-danger'} me-2"></i>
+                    Content-Based Model
+                </div>
+                <div class="mb-2">
+                    <i class="fas fa-${data.collaborative_trained ? 'check-circle text-success' : 'times-circle text-danger'} me-2"></i>
+                    Collaborative Model
+                </div>
+                <div>
+                    <i class="fas fa-${data.data_loaded ? 'check-circle text-success' : 'times-circle text-danger'} me-2"></i>
+                    Data Loaded
+                </div>
+            `;
+            $('#modelStatus').html(statusHtml);
+        })
+        .fail(function() {
+            $('#modelStatus').html('<p class="text-muted text-center">Unable to check status</p>');
+        });
+});
+</script>
+{% endblock %}

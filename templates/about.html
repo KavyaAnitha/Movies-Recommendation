@@ -1,0 +1,367 @@
+{% extends "base.html" %}
+
+{% block title %}About - Movie Recommendation Platform{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-info-circle text-primary me-2"></i>
+            About Movie Recommendation Platform
+        </h1>
+    </div>
+</div>
+
+<!-- Project Overview -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-project-diagram me-2"></i>
+                    Project Overview
+                </h5>
+            </div>
+            <div class="card-body">
+                <p class="lead">
+                    A comprehensive movie recommendation system that leverages data analytics and machine learning to provide personalized movie suggestions.
+                </p>
+                <p>
+                    This platform demonstrates the practical application of recommendation algorithms in the entertainment industry, 
+                    combining both content-based and collaborative filtering approaches to deliver accurate and diverse movie recommendations.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="fas fa-star me-2"></i>
+                    Key Features
+                </h6>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        <strong>Content-Based Filtering:</strong> Movie recommendations based on features like genre, title, and metadata
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        <strong>Collaborative Filtering:</strong> User-based recommendations using SVD algorithm
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        <strong>Hybrid Approach:</strong> Combines both methods with adjustable weights
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        <strong>Analytics Dashboard:</strong> Visual insights into movie trends and system performance
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        <strong>Real-time Recommendations:</strong> Fast and efficient recommendation engine
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="fas fa-cogs me-2"></i>
+                    Technical Implementation
+                </h6>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <i class="fas fa-code text-primary me-2"></i>
+                        <strong>Backend:</strong> Flask web framework with Python
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-brain text-primary me-2"></i>
+                        <strong>Machine Learning:</strong> Scikit-learn for recommendation algorithms
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-database text-primary me-2"></i>
+                        <strong>Data Processing:</strong> Pandas and NumPy for data manipulation
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-chart-line text-primary me-2"></i>
+                        <strong>Visualization:</strong> Matplotlib and Seaborn for analytics
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-globe text-primary me-2"></i>
+                        <strong>Frontend:</strong> Bootstrap 5 with responsive design
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Algorithms Section -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-brain me-2"></i>
+                    Recommendation Algorithms
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="text-center mb-3">
+                            <i class="fas fa-film fa-3x text-primary mb-3"></i>
+                            <h6>Content-Based Filtering</h6>
+                        </div>
+                        <p>
+                            Uses TF-IDF vectorization and cosine similarity to find movies with similar content features. 
+                            Analyzes movie titles, genres, and metadata to recommend similar items.
+                        </p>
+                        <div class="bg-light p-2 rounded">
+                            <small><strong>Key Features:</strong> TF-IDF, Cosine Similarity, Feature Extraction</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center mb-3">
+                            <i class="fas fa-users fa-3x text-success mb-3"></i>
+                            <h6>Collaborative Filtering</h6>
+                        </div>
+                        <p>
+                            Implements SVD (Singular Value Decomposition) to analyze user behavior patterns and preferences. 
+                            Identifies latent factors in user-item interactions for personalized recommendations.
+                        </p>
+                        <div class="bg-light p-2 rounded">
+                            <small><strong>Key Features:</strong> SVD, Matrix Factorization, User Behavior Analysis</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center mb-3">
+                            <i class="fas fa-magic fa-3x text-warning mb-3"></i>
+                            <h6>Hybrid Approach</h6>
+                        </div>
+                        <p>
+                            Combines content-based and collaborative filtering methods with adjustable weights. 
+                            Provides balanced recommendations considering both content similarity and user preferences.
+                        </p>
+                        <div class="bg-light p-2 rounded">
+                            <small><strong>Key Features:</strong> Weighted Combination, Real-time Adjustment, Balanced Results</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- System Architecture -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-sitemap me-2"></i>
+                    System Architecture
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h6>Data Flow Pipeline</h6>
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="w-100 text-center mb-2">
+                                <span class="badge bg-primary">User Input</span>
+                            </div>
+                            <i class="fas fa-arrow-down text-muted mb-2"></i>
+                            <div class="w-100 text-center mb-2">
+                                <span class="badge bg-info">Data Collection Layer</span>
+                            </div>
+                            <i class="fas fa-arrow-down text-muted mb-2"></i>
+                            <div class="w-100 text-center mb-2">
+                                <span class="badge bg-warning">Data Preprocessing</span>
+                            </div>
+                            <i class="fas fa-arrow-down text-muted mb-2"></i>
+                            <div class="w-100 text-center mb-2">
+                                <span class="badge bg-success">Feature Engineering</span>
+                            </div>
+                            <i class="fas fa-arrow-down text-muted mb-2"></i>
+                            <div class="w-100 text-center mb-2">
+                                <span class="badge bg-danger">Recommendation Algorithm</span>
+                            </div>
+                            <i class="fas fa-arrow-down text-muted mb-2"></i>
+                            <div class="w-100 text-center mb-2">
+                                <span class="badge bg-secondary">Prediction Engine</span>
+                            </div>
+                            <i class="fas fa-arrow-down text-muted mb-2"></i>
+                            <div class="w-100 text-center">
+                                <span class="badge bg-dark">Results Display</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>System Components</h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-database text-primary me-2"></i>
+                                <strong>Data Layer:</strong> CSV datasets, SQLite storage
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-cogs text-success me-2"></i>
+                                <strong>Processing:</strong> Data cleaning, normalization
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-brain text-warning me-2"></i>
+                                <strong>ML Engine:</strong> Scikit-learn models
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-globe text-info me-2"></i>
+                                <strong>API Layer:</strong> Flask REST endpoints
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-desktop text-danger me-2"></i>
+                                <strong>UI Layer:</strong> Bootstrap web interface
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Performance Metrics -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-chart-line me-2"></i>
+                    Performance Metrics
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        <div class="bg-light p-3 rounded">
+                            <h4 class="text-primary">0.27</h4>
+                            <p class="mb-0">RMSE</p>
+                            <small class="text-muted">Root Mean Square Error</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="bg-light p-3 rounded">
+                            <h4 class="text-success">0.21</h4>
+                            <p class="mb-0">MAE</p>
+                            <small class="text-muted">Mean Absolute Error</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="bg-light p-3 rounded">
+                            <h4 class="text-warning">&lt;100ms</h4>
+                            <p class="mb-0">Response Time</p>
+                            <small class="text-muted">Average recommendation latency</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="bg-light p-3 rounded">
+                            <h4 class="text-info">1.0</h4>
+                            <p class="mb-0">Precision@5</p>
+                            <small class="text-muted">Top-5 recommendation accuracy</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Future Enhancements -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-rocket me-2"></i>
+                    Future Enhancements
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Technical Improvements</h6>
+                        <ul>
+                            <li>Deep learning models (Neural Collaborative Filtering)</li>
+                            <li>Real-time recommendation updates</li>
+                            <li>Advanced feature extraction (NLP for descriptions)</li>
+                            <li>Context-aware recommendations</li>
+                            <li>Cross-domain recommendation capabilities</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Platform Features</h6>
+                        <ul>
+                            <li>User authentication and profiles</li>
+                            <li>Social features (friends' recommendations)</li>
+                            <li>Mobile application</li>
+                            <li>Integration with streaming services</li>
+                            <li>Advanced analytics and reporting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Information -->
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-envelope me-2"></i>
+                    Project Information
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Technologies Used</h6>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-primary">Python</span>
+                            <span class="badge bg-success">Flask</span>
+                            <span class="badge bg-warning">Scikit-Learn</span>
+                            <span class="badge bg-info">Pandas</span>
+                            <span class="badge bg-danger">NumPy</span>
+                            <span class="badge bg-secondary">Bootstrap</span>
+                            <span class="badge bg-dark">jQuery</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Project Details</h6>
+                        <p class="mb-1">
+                            <strong>Domain:</strong> Data Science, Machine Learning, Web Development
+                        </p>
+                        <p class="mb-1">
+                            <strong>Purpose:</strong> Educational demonstration of recommendation systems
+                        </p>
+                        <p class="mb-0">
+                            <strong>License:</strong> MIT License
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

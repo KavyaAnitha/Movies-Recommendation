@@ -1,0 +1,423 @@
+{% extends "base.html" %}
+
+{% block title %}Recommendations - Movie Recommendation Platform{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-star text-primary me-2"></i>
+            Movie Recommendations
+        </h1>
+    </div>
+</div>
+
+<!-- Recommendation Type Selection -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-cogs me-2"></i>
+                    Choose Recommendation Type
+                </h5>
+            </div>
+            <div class="card-body">
+                <ul class="nav nav-pills" id="recommendationTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="content-tab" data-bs-toggle="pill" data-bs-target="#content" type="button">
+                            <i class="fas fa-film me-2"></i>Content-Based
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="collaborative-tab" data-bs-toggle="pill" data-bs-target="#collaborative" type="button">
+                            <i class="fas fa-users me-2"></i>Collaborative Filtering
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="hybrid-tab" data-bs-toggle="pill" data-bs-target="#hybrid" type="button">
+                            <i class="fas fa-magic me-2"></i>Hybrid Approach
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tab Content -->
+<div class="tab-content" id="recommendationTabContent">
+    <!-- Content-Based Recommendations -->
+    <div class="tab-pane fade show active" id="content" role="tabpanel">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h6 class="mb-0">
+                            <i class="fas fa-film me-2"></i>
+                            Select Movie
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="movieSelect" class="form-label">Choose a movie:</label>
+                            <select class="form-select" id="movieSelect">
+                                <option value="">Loading movies...</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contentCount" class="form-label">Number of recommendations:</label>
+                            <input type="number" class="form-control" id="contentCount" value="10" min="1" max="20">
+                        </div>
+                        <button class="btn btn-primary w-100" onclick="getContentRecommendations()">
+                            <i class="fas fa-search me-2"></i>Get Recommendations
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h6 class="mb-0">
+                            <i class="fas fa-star me-2"></i>
+                            Recommendations
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div id="contentRecommendations">
+                            <p class="text-muted text-center">Select a movie to get recommendations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Collaborative Filtering Recommendations -->
+    <div class="tab-pane fade" id="collaborative" role="tabpanel">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h6 class="mb-0">
+                            <i class="fas fa-user me-2"></i>
+                            User Information
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="userId" class="form-label">User ID:</label>
+                            <input type="number" class="form-control" id="userId" value="1" min="1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="collabCount" class="form-label">Number of recommendations:</label>
+                            <input type="number" class="form-control" id="collabCount" value="10" min="1" max="20">
+                        </div>
+                        <button class="btn btn-success w-100" onclick="getCollaborativeRecommendations()">
+                            <i class="fas fa-search me-2"></i>Get Recommendations
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h6 class="mb-0">
+                            <i class="fas fa-star me-2"></i>
+                            Recommendations
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div id="collaborativeRecommendations">
+                            <p class="text-muted text-center">Enter a user ID to get recommendations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hybrid Recommendations -->
+    <div class="tab-pane fade" id="hybrid" role="tabpanel">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h6 class="mb-0">
+                            <i class="fas fa-sliders-h me-2"></i>
+                            Hybrid Settings
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="hybridUserId" class="form-label">User ID:</label>
+                            <input type="number" class="form-control" id="hybridUserId" value="1" min="1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="contentWeight" class="form-label">Content Weight (0-1):</label>
+                            <input type="range" class="form-range" id="contentWeight" min="0" max="1" step="0.1" value="0.5">
+                            <div class="d-flex justify-content-between">
+                                <small>Collaborative</small>
+                                <small id="weightValue">0.5</small>
+                                <small>Content</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="hybridCount" class="form-label">Number of recommendations:</label>
+                            <input type="number" class="form-control" id="hybridCount" value="10" min="1" max="20">
+                        </div>
+                        <button class="btn btn-warning w-100" onclick="getHybridRecommendations()">
+                            <i class="fas fa-search me-2"></i>Get Recommendations
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h6 class="mb-0">
+                            <i class="fas fa-star me-2"></i>
+                            Hybrid Recommendations
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div id="hybridRecommendations">
+                            <p class="text-muted text-center">Enter a user ID to get hybrid recommendations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popular Movies Section -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-fire me-2"></i>
+                    Popular Movies
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row" id="popularMoviesGrid">
+                    <div class="col-12 text-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+    // Load movies for content-based recommendations
+    loadMovies();
+    
+    // Load popular movies
+    loadPopularMovies();
+    
+    // Update weight value display
+    $('#contentWeight').on('input', function() {
+        $('#weightValue').text($(this).val());
+    });
+});
+
+function loadMovies() {
+    $.get('/api/movies')
+        .done(function(data) {
+            let options = '<option value="">Select a movie...</option>';
+            data.forEach(function(movie) {
+                options += `<option value="${movie.movieId}">${movie.title}</option>`;
+            });
+            $('#movieSelect').html(options);
+        })
+        .fail(function() {
+            $('#movieSelect').html('<option value="">Unable to load movies</option>');
+        });
+}
+
+function loadPopularMovies() {
+    $.get('/api/popular?n=12')
+        .done(function(data) {
+            let moviesHtml = '';
+            data.forEach(function(movie) {
+                moviesHtml += `
+                    <div class="col-sm-6 col-lg-4 mb-3">
+                        <div class="card h-100 movie-card">
+                            <div class="card-body">
+                                <h6 class="card-title mb-1">${movie.title}</h6>
+                                <p class="card-text mb-2"><small class="text-muted">${movie.genres}</small></p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-sm btn-outline-primary" onclick="selectMovie(${movie.movieId})">
+                                        <i class="fas fa-star me-1"></i>Select
+                                    </button>
+                                    <small class="text-muted">ID: ${movie.movieId}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            $('#popularMoviesGrid').html(moviesHtml || '<p class="text-muted text-center">No movies available</p>');
+        })
+        .fail(function() {
+            $('#popularMoviesGrid').html('<p class="text-muted text-center">Unable to load popular movies</p>');
+        });
+}
+
+function selectMovie(movieId) {
+    $('#movieSelect').val(movieId);
+    $('#content-tab').click();
+    getContentRecommendations();
+}
+
+function getContentRecommendations() {
+    const movieId = $('#movieSelect').val();
+    const count = $('#contentCount').val();
+    
+    if (!movieId) {
+        alert('Please select a movie');
+        return;
+    }
+    
+    $('#contentRecommendations').html('<div class="text-center"><div class="spinner-border text-primary"></div></div>');
+    
+    $.get(`/api/recommend/content/${movieId}?n=${count}`)
+        .done(function(data) {
+            displayRecommendations(data, 'contentRecommendations');
+        })
+        .fail(function() {
+            $('#contentRecommendations').html('<p class="text-danger text-center">Unable to get recommendations</p>');
+        });
+}
+
+function getCollaborativeRecommendations() {
+    const userId = $('#userId').val();
+    const count = $('#collabCount').val();
+    
+    if (!userId) {
+        alert('Please enter a user ID');
+        return;
+    }
+    
+    $('#collaborativeRecommendations').html('<div class="text-center"><div class="spinner-border text-success"></div></div>');
+    
+    $.get(`/api/recommend/collaborative/${userId}?n=${count}`)
+        .done(function(data) {
+            displayRecommendations(data, 'collaborativeRecommendations');
+        })
+        .fail(function() {
+            $('#collaborativeRecommendations').html('<p class="text-danger text-center">Unable to get recommendations</p>');
+        });
+}
+
+function getHybridRecommendations() {
+    const userId = $('#hybridUserId').val();
+    const count = $('#hybridCount').val();
+    const contentWeight = $('#contentWeight').val();
+    
+    if (!userId) {
+        alert('Please enter a user ID');
+        return;
+    }
+    
+    $('#hybridRecommendations').html('<div class="text-center"><div class="spinner-border text-warning"></div></div>');
+    
+    $.get(`/api/recommend/hybrid/${userId}?n=${count}&content_weight=${contentWeight}`)
+        .done(function(data) {
+            displayHybridRecommendations(data, 'hybridRecommendations');
+        })
+        .fail(function() {
+            $('#hybridRecommendations').html('<p class="text-danger text-center">Unable to get recommendations</p>');
+        });
+}
+
+function displayRecommendations(data, containerId) {
+    if (!data || data.length === 0) {
+        $(`#${containerId}`).html('<p class="text-muted text-center">No recommendations found</p>');
+        return;
+    }
+    
+    let html = '<div class="row">';
+    data.forEach(function(movie, index) {
+        html += `
+            <div class="col-md-6 mb-4">
+                <div class="recommendation-item">
+                    <h6 class="mb-2">${index + 1}. ${movie.title}</h6>
+                    <p class="mb-3 text-muted">${movie.genres}</p>
+                    <p class="mb-3 text-muted">Movie ID: ${movie.movieId}</p>
+                    <button class="btn btn-sm btn-outline-primary" onclick="selectMovie(${movie.movieId})">
+                        <i class="fas fa-star me-1"></i>Similar
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+    html += '</div>';
+    
+    $(`#${containerId}`).html(html);
+}
+
+function displayHybridRecommendations(data, containerId) {
+    if (!data || data.length === 0) {
+        $(`#${containerId}`).html('<p class="text-muted text-center">No recommendations found</p>');
+        return;
+    }
+    
+    let html = '<div class="row">';
+    data.forEach(function(movie, index) {
+        const contentScore = (movie.content_score * 100).toFixed(1);
+        const collabScore = (movie.collab_score * 100).toFixed(1);
+        const hybridScore = (movie.hybrid_score * 100).toFixed(1);
+        
+        html += `
+            <div class="col-md-12 mb-3">
+                <div class="card h-100 recommendation-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div>
+                                <h6 class="card-title mb-1">${index + 1}. ${movie.title}</h6>
+                                <p class="card-text mb-2"><small class="text-muted">${movie.genres}</small></p>
+                            </div>
+                            <span class="badge bg-warning text-dark">Hybrid ${hybridScore}%</span>
+                        </div>
+                        <div class="row text-center gx-2">
+                            <div class="col">
+                                <small class="text-muted d-block">Content</small>
+                                <div class="progress" style="height: 8px;">
+                                    <div class="progress-bar bg-info" style="width: ${contentScore}%"></div>
+                                </div>
+                                <small>${contentScore}%</small>
+                            </div>
+                            <div class="col">
+                                <small class="text-muted d-block">Collaborative</small>
+                                <div class="progress" style="height: 8px;">
+                                    <div class="progress-bar bg-success" style="width: ${collabScore}%"></div>
+                                </div>
+                                <small>${collabScore}%</small>
+                            </div>
+                            <div class="col-auto align-self-center">
+                                <button class="btn btn-sm btn-outline-primary" onclick="selectMovie(${movie.movieId})">
+                                    <i class="fas fa-star me-1"></i>Select
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    html += '</div>';
+    
+    $(`#${containerId}`).html(html);
+}
+</script>
+{% endblock %}
